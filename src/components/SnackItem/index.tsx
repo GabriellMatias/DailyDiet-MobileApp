@@ -1,4 +1,11 @@
-import { SnackItemContainer, SnackOnDiet, SnackTitle, TimeText } from './style'
+import {
+  LineSeparator,
+  SnackItemContainer,
+  SnackOnDiet,
+  SnackTitle,
+  TimeAndTitleContainer,
+  TimeText,
+} from './style'
 
 interface SnackItemComponentProps {
   title: string
@@ -13,8 +20,11 @@ export function SnackItemComponent({
 }: SnackItemComponentProps) {
   return (
     <SnackItemContainer>
-      <TimeText>{time}</TimeText>
-      <SnackTitle>{title}</SnackTitle>
+      <TimeAndTitleContainer>
+        <TimeText>{time}</TimeText>
+        <LineSeparator />
+        <SnackTitle>{title}</SnackTitle>
+      </TimeAndTitleContainer>
       <SnackOnDiet isOnDiet={isOnDiet} />
     </SnackItemContainer>
   )

@@ -1,11 +1,31 @@
 import { Text } from 'react-native'
-import { ButtonContainer, PlusIcon } from './style'
+import { ButtonContainer } from './style'
+import React from 'react'
+import { IconComponent } from '@components/IconComponent'
 
-export function ButtonComponent() {
+interface ButtonComponentProps {
+  title: string
+  iconName?: string
+  iconColor?: string
+  iconSize?: number
+}
+
+export function ButtonComponent({
+  title = 'New Snack',
+  iconName,
+  iconColor,
+  iconSize,
+}: ButtonComponentProps) {
   return (
     <ButtonContainer>
-      <PlusIcon />
-      <Text>New Snack</Text>
+      {iconName && (
+        <IconComponent
+          iconColor={iconColor}
+          iconName={iconName}
+          iconSize={iconSize}
+        />
+      )}
+      <Text style={{ color: '#fff' }}>{title}</Text>
     </ButtonContainer>
   )
 }

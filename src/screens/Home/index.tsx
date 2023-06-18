@@ -5,11 +5,12 @@ import {
   ButtonSubtitle,
   HomeContainer,
   PercentNumberTitle,
+  SectionListTitle,
   SnacksContainer,
   SnacksTitle,
 } from './style'
 import { ButtonComponent } from '@components/ButtonComponent'
-import { SectionList, Text } from 'react-native'
+import { SectionList } from 'react-native'
 import { SnackItemComponent } from '@components/SnackItem'
 
 const DATA = [
@@ -17,9 +18,9 @@ const DATA = [
     title: '12.08.22',
     data: [
       {
-        time: '10',
+        time: '10:00',
         title: 'algum lanche',
-        isOnDiet: true,
+        isOnDiet: false,
       },
       {
         time: '10',
@@ -67,9 +68,9 @@ export function Home() {
         </ButtonMetrics>
         <SnacksContainer>
           <SnacksTitle>Snacks</SnacksTitle>
-          <ButtonComponent />
+          <ButtonComponent title="New Snack" iconName="plus" />
           <SectionList
-            style={{ marginTop: 40 }}
+            style={{ marginTop: 14 }}
             showsVerticalScrollIndicator={false}
             sections={DATA}
             keyExtractor={(item) => item.time}
@@ -81,7 +82,7 @@ export function Home() {
               />
             )}
             renderSectionHeader={({ section: { title } }) => (
-              <Text>{title}</Text>
+              <SectionListTitle>{title}</SectionListTitle>
             )}
           />
         </SnacksContainer>

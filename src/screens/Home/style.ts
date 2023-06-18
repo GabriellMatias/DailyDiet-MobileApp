@@ -12,6 +12,7 @@ export const ButtonMetrics = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  margin-bottom: -10px;
 `
 export const PercentNumberTitle = styled.Text`
   ${({ theme }) => css`
@@ -26,12 +27,11 @@ export const PercentNumberTitle = styled.Text`
 export const ButtonSubtitle = styled.Text`
   ${({ theme }) => css`
     text-align: center;
-    font-size: ${theme.FONT_SIZE.SM}px;
+    font-size: ${theme.FONT_SIZE.MD}px;
 
-    font-family: ${theme.FONT_FAMILY.REGULAR};
+    font-family: ${theme.FONT_FAMILY.BOLD};
     color: ${theme.COLORS.GRAY_600};
   `}
-  margin-bottom:20px;
 `
 export const SnacksTitle = styled.Text`
   ${({ theme }) => css`
@@ -47,10 +47,20 @@ export const SnacksContainer = styled.View`
   flex: 1;
   margin-top: 40px;
 `
+export const SectionListTitle = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.LG}px;
+
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.GRAY_700};
+  `}
+  margin-bottom: 16px;
+  margin-top: 16px;
+`
 export const BackIcon = styled(Icon).attrs(({ theme }) => ({
   size: 24,
   name: 'arrowup',
-  color: theme.COLORS.GREEN_DARK,
+  color: '#CBE4B4',
 }))`
   align-self: flex-end;
   padding: 4px 4px 0;
