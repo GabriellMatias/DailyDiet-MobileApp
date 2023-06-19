@@ -1,5 +1,5 @@
 import { InputComponent } from '@components/InputComponent'
-import { NewSnackHeader } from '@components/NewSnackHeader'
+
 import React from 'react'
 import {
   DateAndTimeInputContainer,
@@ -10,11 +10,12 @@ import { InputLabel } from '@components/InputComponent/style'
 import { ButtonIsOnDiet } from '@components/ButtonIsOnDiet'
 import { ButtonComponent } from '@components/ButtonComponent'
 import { ScrollView } from 'react-native'
+import { SnacksHeader } from '@components/SnacksHeader'
 
 export function NewSnack() {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <NewSnackHeader />
+      <SnacksHeader title="New Snack" variant="gray" />
       <NewSnackContainer>
         <InputComponent label="Name" />
         <InputComponent label="Description" />

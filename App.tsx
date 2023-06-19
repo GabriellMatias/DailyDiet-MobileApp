@@ -12,6 +12,7 @@ import { Home } from './src/screens/Home'
 import { DietsResume } from './src/screens/DietsResume'
 import { NewSnack } from './src/screens/NewSnack'
 import { NewSnackFinalScreen } from './src/screens/NewSnackFinalScreen'
+import { SnackDetails } from './src/screens/SnackDetails'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -22,7 +23,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={'light-content'} />
-      {fontsLoaded ? <NewSnackFinalScreen /> : <Loading />}
+      {fontsLoaded ? <SnackDetails /> : <Loading />}
     </ThemeProvider>
   )
 }

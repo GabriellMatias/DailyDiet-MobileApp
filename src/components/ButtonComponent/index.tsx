@@ -8,6 +8,7 @@ interface ButtonComponentProps {
   iconName?: string
   iconColor?: string
   iconSize?: number
+  variant?: string
 }
 
 export function ButtonComponent({
@@ -15,9 +16,10 @@ export function ButtonComponent({
   iconName,
   iconColor,
   iconSize,
+  variant,
 }: ButtonComponentProps) {
   return (
-    <ButtonContainer>
+    <ButtonContainer variant={variant}>
       {iconName && (
         <IconComponent
           iconColor={iconColor}
@@ -25,7 +27,13 @@ export function ButtonComponent({
           iconSize={iconSize}
         />
       )}
-      <Text style={{ color: '#fff' }}>{title}</Text>
+      <Text
+        style={
+          variant === 'transparent' ? { color: '#000' } : { color: '#fff' }
+        }
+      >
+        {title}
+      </Text>
     </ButtonContainer>
   )
 }

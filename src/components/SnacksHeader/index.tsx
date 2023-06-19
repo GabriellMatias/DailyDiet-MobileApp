@@ -5,12 +5,23 @@ import { StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 import { IconComponent } from '@components/IconComponent'
 
-export function NewSnackHeader() {
+export interface SnacksHeaderProps {
+  title: string
+  variant: 'gray' | 'red' | 'green'
+}
+
+export function SnacksHeader({ title, variant }: SnacksHeaderProps) {
   const { COLORS } = useTheme()
   return (
-    <NewSnackHeaderContainer>
+    <NewSnackHeaderContainer title={title} variant={variant}>
       <StatusBar
-        backgroundColor={COLORS.GRAY_300}
+        backgroundColor={
+          variant === 'gray'
+            ? COLORS.GRAY_300
+            : variant === 'red'
+            ? COLORS.RED
+            : COLORS.GREEN
+        }
         translucent
         barStyle="dark-content"
       />
@@ -19,7 +30,7 @@ export function NewSnackHeader() {
         iconSize={24}
         iconColor={COLORS.GRAY_500}
       />
-      <ButtonSubtitle>Snacks on diet</ButtonSubtitle>
+      <ButtonSubtitle>{title}</ButtonSubtitle>
     </NewSnackHeaderContainer>
   )
 }
