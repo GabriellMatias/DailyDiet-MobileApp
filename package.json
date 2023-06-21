@@ -4,6 +4,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
+    "server": "json-server --host 192.168.0.55 --watch db.json",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -14,9 +15,11 @@
     "@react-navigation/native-stack": "^6.9.12",
     "@rocketseat/eslint-config": "^1.2.0",
     "@types/styled-components-react-native": "^5.2.1",
+    "axios": "^1.4.0",
     "eslint": "^8.43.0",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
+    "json-server": "^0.17.3",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-safe-area-context": "4.5.0",

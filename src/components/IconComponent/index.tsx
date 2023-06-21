@@ -5,15 +5,17 @@ export interface IconComponentProps {
   iconName: string
   iconColor?: string
   iconSize?: number
+  onPressAction?: () => void
 }
 
 export function IconComponent({
   iconName,
   iconColor,
   iconSize,
+  onPressAction,
 }: IconComponentProps) {
   return (
-    <IconComponentContainer>
+    <IconComponentContainer onPress={onPressAction}>
       <IconComponenItem
         iconColor={iconColor}
         iconName={iconName}

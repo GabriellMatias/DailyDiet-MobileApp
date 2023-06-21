@@ -8,11 +8,7 @@ import {
 } from '@expo-google-fonts/nunito'
 import React from 'react'
 import { Loading } from '@components/Loading'
-import { Home } from './src/screens/Home'
-import { DietsResume } from './src/screens/DietsResume'
-import { NewSnack } from './src/screens/NewSnack'
-import { NewSnackFinalScreen } from './src/screens/NewSnackFinalScreen'
-import { SnackDetails } from './src/screens/SnackDetails'
+import { Routes } from './src/Routes'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,7 +19,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar barStyle={'light-content'} />
-      {fontsLoaded ? <SnackDetails /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   )
 }

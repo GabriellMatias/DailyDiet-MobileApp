@@ -9,6 +9,7 @@ interface ButtonComponentProps {
   iconColor?: string
   iconSize?: number
   variant?: string
+  onPressAction?: () => void
 }
 
 export function ButtonComponent({
@@ -17,9 +18,10 @@ export function ButtonComponent({
   iconColor,
   iconSize,
   variant,
+  onPressAction,
 }: ButtonComponentProps) {
   return (
-    <ButtonContainer variant={variant}>
+    <ButtonContainer variant={variant} onPress={onPressAction}>
       {iconName && (
         <IconComponent
           iconColor={iconColor}

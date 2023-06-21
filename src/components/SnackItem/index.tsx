@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import {
   LineSeparator,
   SnackItemContainer,
@@ -6,6 +7,7 @@ import {
   TimeAndTitleContainer,
   TimeText,
 } from './style'
+import { useState } from 'react'
 
 interface SnackItemComponentProps {
   title: string
@@ -18,8 +20,14 @@ export function SnackItemComponent({
   time,
   title,
 }: SnackItemComponentProps) {
+  const { navigate } = useNavigation()
+  const [snack, setSnack] = useState<SnackItemComponentProps>()
+  function handleSnackDetails() {
+    setSnack({ isOnDiet, time, title })
+    navigate('snackDetails', { snack: snack?.title })
+  }
   return (
-    <SnackItemContainer>
+    <SnackItemContainer onPress={handleSnackDetails}>
       <TimeAndTitleContainer>
         <TimeText>{time}</TimeText>
         <LineSeparator />

@@ -4,6 +4,7 @@ import { NewSnackHeaderContainer } from './style'
 import { StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
 import { IconComponent } from '@components/IconComponent'
+import { useNavigation } from '@react-navigation/native'
 
 export interface SnacksHeaderProps {
   title: string
@@ -12,6 +13,11 @@ export interface SnacksHeaderProps {
 
 export function SnacksHeader({ title, variant }: SnacksHeaderProps) {
   const { COLORS } = useTheme()
+  const { goBack } = useNavigation()
+
+  function handleBackScreen() {
+    goBack()
+  }
   return (
     <NewSnackHeaderContainer title={title} variant={variant}>
       <StatusBar
@@ -26,6 +32,7 @@ export function SnacksHeader({ title, variant }: SnacksHeaderProps) {
         barStyle="dark-content"
       />
       <IconComponent
+        onPressAction={handleBackScreen}
         iconName="arrowleft"
         iconSize={24}
         iconColor={COLORS.GRAY_500}

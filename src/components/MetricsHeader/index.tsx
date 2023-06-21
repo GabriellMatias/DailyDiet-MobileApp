@@ -3,9 +3,15 @@ import { ButtonSubtitle, PercentNumberTitle } from '../../screens/Home/style'
 import { BackMetricsIcon, MetricsContainer } from './style'
 import { StatusBar } from 'react-native'
 import { useTheme } from 'styled-components'
+import { useNavigation } from '@react-navigation/native'
 
 export function MetricsHeader() {
   const { COLORS } = useTheme()
+  const { goBack } = useNavigation()
+
+  function handleBackScreen() {
+    goBack()
+  }
   return (
     <MetricsContainer>
       <StatusBar
@@ -13,7 +19,7 @@ export function MetricsHeader() {
         translucent
         barStyle="dark-content"
       />
-      <BackMetricsIcon />
+      <BackMetricsIcon onPress={handleBackScreen} />
       <PercentNumberTitle>99,00%</PercentNumberTitle>
       <ButtonSubtitle>Snacks on diet</ButtonSubtitle>
     </MetricsContainer>

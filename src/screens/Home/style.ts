@@ -9,6 +9,7 @@ export const HomeContainer = styled(SafeAreaView)`
 export const ButtonMetrics = styled.TouchableOpacity`
   height: 102px;
   border-radius: 6px;
+  padding-bottom: 24px;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
@@ -57,6 +58,17 @@ export const SectionListTitle = styled.Text`
   margin-bottom: 16px;
   margin-top: 16px;
 `
+export const WithoutDataTitle = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.LG}px;
+
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.GRAY_700};
+  `}
+  padding:48px;
+  background: #000;
+`
+
 export const BackIcon = styled(Icon).attrs(({ theme }) => ({
   size: 24,
   name: 'arrowup',
