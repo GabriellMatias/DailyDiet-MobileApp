@@ -42,7 +42,6 @@ export function NewSnack() {
         time: '',
         isOnDiet: false,
       })
-
       navigate('home')
     } catch (error) {
       if (error instanceof AppError) {

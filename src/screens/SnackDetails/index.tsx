@@ -8,11 +8,12 @@ import {
   SnackDetailsFlag,
   SnackDetailsTitle,
 } from './style'
-import { ScrollView, Text } from 'react-native'
+import { Alert, ScrollView, Text } from 'react-native'
 import { CircleIsOnDiet } from '@components/ButtonIsOnDiet/style'
 import { ButtonComponent } from '@components/ButtonComponent'
-import { RouteProp, useRoute } from '@react-navigation/native'
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
 import { Snack } from '../Home'
+import { RemoveSnackById } from '@storage/Snacks/removeSnackById'
 
 type RouteParams = {
   snack: Snack
@@ -25,6 +26,29 @@ type RootStackParamList = {
 export function SnackDetails() {
   const { params } = useRoute<RouteProp<RootStackParamList, 'snack'>>()
   const snack = params?.snack || []
+  const { navigate } = useNavigation()
+
+  async function handleRemoveSnack() {
+    Alert.alert('Remove ❌', 'Really want to remove this team?', [
+      { text: 'No', style: 'cancel' },
+      {
+        text: 'Yes',
+        onPress: () => {
+          onRemoveSnack()
+        },
+      },
+    ])
+  }
+  async function onRemoveSnack() {
+    try {
+      await RemoveSnackById(snack.id)
+      navigate('home')
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Remove Snack 🎮', 'Not possible to remove this Snack')
+    }
+  }
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <SnacksHeader title="Snacks" variant="green" />
@@ -37,7 +61,7 @@ export function SnackDetails() {
         </SnackDetailDateSubTitle>
         <SnackDetailsFlag>
           <CircleIsOnDiet option={snack.isOnDiet ? 'Yes' : 'No'} />
-          <Text>Dentro da Dieta</Text>
+          <Text>{snack.isOnDiet ? 'Dentro' : 'Fora'} da Dieta</Text>
         </SnackDetailsFlag>
       </SnackDetailsContainer>
       <SnackDetailsButtonsContainer>
@@ -48,6 +72,7 @@ export function SnackDetails() {
           iconColor="#000"
           iconName="delete"
           iconSize={18}
+          onPress={handleRemoveSnack}
         />
       </SnackDetailsButtonsContainer>
     </ScrollView>

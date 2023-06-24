@@ -13,9 +13,10 @@ import {
 import { ButtonComponent } from '@components/ButtonComponent'
 import { SectionList } from 'react-native'
 import { SnackItemComponent } from '@components/SnackItem'
-import { useNavigation } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useCallback, useState } from 'react'
 import { getSnacks } from '@storage/Snacks/getSnacks'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export interface Snack {
   id: number
@@ -33,24 +34,25 @@ export interface SnackSection {
 
 export function Home() {
   /* TODO - Arrumar para quando voltar na tela home atualizar a lista de Snacks */
-  const { navigate, isFocused } = useNavigation()
+  const { navigate } = useNavigation()
   const [snackData, setSnackData] = useState<SnackSection[]>([])
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await getSnacks()
-        console.log(response)
-
-        setSnackData(response)
-      } catch (error) {
-        console.log('ERROR')
-        console.error(error)
-      }
+  async function fetchData() {
+    try {
+      
+      const response = await getSnacks()
+      setSnackData(response)
+      console.log(response)
+    } catch (error) {
+      console.log('ERROR')
+      console.error(error)
     }
-    fetchData()
-    console.log('SNACK', snackData)
-  }, [isFocused])
+  }
+  useFocusEffect(
+    useCallback(() => {
+      fetchData()
+    }, []),
+  )
 
   function handleDietsResume() {
     navigate('dietsResume')
