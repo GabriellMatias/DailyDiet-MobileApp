@@ -15,33 +15,42 @@ import { SectionList } from 'react-native'
 import { SnackItemComponent } from '@components/SnackItem'
 import { useNavigation } from '@react-navigation/native'
 import { useEffect, useState } from 'react'
-import { api } from '../../api/axios'
+import { getSnacks } from '@storage/Snacks/getSnacks'
 
-interface SnackProps {
+export interface Snack {
+  id: number
   name: string
   description: string
   date: string
   time: string
+  isOnDiet: boolean
+}
+
+export interface SnackSection {
+  title: string
+  data: Snack[]
 }
 
 export function Home() {
-  const { navigate } = useNavigation()
-  const [data, setData] = useState<any[]>([])
+  /* TODO - Arrumar para quando voltar na tela home atualizar a lista de Snacks */
+  const { navigate, isFocused } = useNavigation()
+  const [snackData, setSnackData] = useState<SnackSection[]>([])
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const response = await api.get('/snacks')
-        setData(response.data)
-      } catch (error) {
-        console.log('here')
+        const response = await getSnacks()
+        console.log(response)
 
+        setSnackData(response)
+      } catch (error) {
+        console.log('ERROR')
         console.error(error)
       }
     }
-
     fetchData()
-  }, [])
+    console.log('SNACK', snackData)
+  }, [isFocused])
 
   function handleDietsResume() {
     navigate('dietsResume')
@@ -64,30 +73,27 @@ export function Home() {
           <ButtonComponent
             title="New Snack"
             iconName="plus"
-            onPressAction={handleNewSnack}
+            onPress={handleNewSnack}
           />
-          <SectionList
-            style={{ marginTop: 14 }}
-            showsVerticalScrollIndicator={false}
-            sections={data}
-            keyExtractor={(item) => item.time}
-            renderItem={({ item }) => (
-              <>
-                {item ? (
-                  <SnackItemComponent
-                    isOnDiet={item.isOnDiet}
-                    time={item.time}
-                    title={item.title}
-                  />
-                ) : (
-                  <WithoutDataTitle>You dont have any data</WithoutDataTitle>
-                )}
-              </>
-            )}
-            renderSectionHeader={({ section: { title } }) => (
-              <SectionListTitle>{title}</SectionListTitle>
-            )}
-          />
+          {snackData && (
+            <SectionList
+              style={{ marginTop: 14 }}
+              showsVerticalScrollIndicator={false}
+              sections={snackData}
+              keyExtractor={(snack) => snack.id.toString()}
+              renderItem={({ item }) => (
+                <SnackItemComponent snackId={item.id} />
+              )}
+              ListEmptyComponent={
+                <WithoutDataTitle>
+                  You dont have snacks ☹️, lets register one
+                </WithoutDataTitle>
+              }
+              renderSectionHeader={({ section: { title } }) => (
+                <SectionListTitle>{title}</SectionListTitle>
+              )}
+            />
+          )}
         </SnacksContainer>
       </HomeContainer>
     </>

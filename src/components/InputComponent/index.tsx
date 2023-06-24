@@ -1,16 +1,14 @@
 import React from 'react'
-import {
-  InputContainer,
-  InputContent,
-  InputContentProps,
-  InputLabel,
-} from './style'
-
-export function InputComponent({ label }: InputContentProps) {
+import { InputContainer, InputContent, InputLabel } from './style'
+import { TextInputProps } from 'react-native'
+interface InputComponentProps extends TextInputProps {
+  label: string
+}
+export function InputComponent({ label, ...rest }: InputComponentProps) {
   return (
     <InputContainer>
       <InputLabel>{label}</InputLabel>
-      <InputContent label={label} keyboardType="numeric" />
+      <InputContent label={label} {...rest} />
     </InputContainer>
   )
 }

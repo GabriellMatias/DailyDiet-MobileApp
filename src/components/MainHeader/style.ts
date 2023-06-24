@@ -15,6 +15,7 @@ export const Logo = styled.Image`
 export const ProfileImg = styled.Image`
   width: 40px;
   height: 40px;
-  border: 2px solid;
+  border-width: 2px;
+  border-color: #000;
   border-radius: 99px;
 `

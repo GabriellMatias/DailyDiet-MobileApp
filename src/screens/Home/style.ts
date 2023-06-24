@@ -65,8 +65,8 @@ export const WithoutDataTitle = styled.Text`
     font-family: ${theme.FONT_FAMILY.BOLD};
     color: ${theme.COLORS.GRAY_700};
   `}
-  padding:48px;
-  background: #000;
+  margin-top:48px;
+  text-align: center;
 `
 
 export const BackIcon = styled(Icon).attrs(({ theme }) => ({

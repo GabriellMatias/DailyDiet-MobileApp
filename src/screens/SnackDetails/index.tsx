@@ -11,20 +11,32 @@ import {
 import { ScrollView, Text } from 'react-native'
 import { CircleIsOnDiet } from '@components/ButtonIsOnDiet/style'
 import { ButtonComponent } from '@components/ButtonComponent'
+import { RouteProp, useRoute } from '@react-navigation/native'
+import { Snack } from '../Home'
 
+type RouteParams = {
+  snack: Snack
+}
+
+type RootStackParamList = {
+  snack: RouteParams
+  // Outras rotas
+}
 export function SnackDetails() {
+  const { params } = useRoute<RouteProp<RootStackParamList, 'snack'>>()
+  const snack = params?.snack || []
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <SnacksHeader title="Snacks" variant="green" />
       <SnackDetailsContainer>
-        <SnackDetailsTitle>Sanduice</SnackDetailsTitle>
-        <SnackDetailSubTitle>
-          sanduiceh de pao integral com atum e slada de alfacae e tomato
-        </SnackDetailSubTitle>
+        <SnackDetailsTitle>{snack.name}</SnackDetailsTitle>
+        <SnackDetailSubTitle>{snack.description}</SnackDetailSubTitle>
         <SnackDetailDateTitle>Date and Time</SnackDetailDateTitle>
-        <SnackDetailDateSubTitle>12/08/2022 as 16:00</SnackDetailDateSubTitle>
+        <SnackDetailDateSubTitle>
+          {snack.date} as {snack.time}
+        </SnackDetailDateSubTitle>
         <SnackDetailsFlag>
-          <CircleIsOnDiet option="Yes" />
+          <CircleIsOnDiet option={snack.isOnDiet ? 'Yes' : 'No'} />
           <Text>Dentro da Dieta</Text>
         </SnackDetailsFlag>
       </SnackDetailsContainer>

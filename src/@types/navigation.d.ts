@@ -1,3 +1,5 @@
+import { Snack } from './src/screens/Home'
+
 export declare global {
   // eslint-disable-next-line no-unused-vars
   namespace ReactNavigation {
@@ -7,7 +9,7 @@ export declare global {
       dietsResume: undefined
       newSnack: undefined
       snackDetails: {
-        snack?: any
+        snack?: Snack
       }
     }
   }

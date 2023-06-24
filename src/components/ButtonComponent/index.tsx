@@ -1,15 +1,14 @@
-import { Text } from 'react-native'
+import { ButtonProps, Text } from 'react-native'
 import { ButtonContainer } from './style'
 import React from 'react'
 import { IconComponent } from '@components/IconComponent'
 
-interface ButtonComponentProps {
+interface ButtonComponentProps extends ButtonProps {
   title: string
   iconName?: string
   iconColor?: string
   iconSize?: number
   variant?: string
-  onPressAction?: () => void
 }
 
 export function ButtonComponent({
@@ -18,10 +17,10 @@ export function ButtonComponent({
   iconColor,
   iconSize,
   variant,
-  onPressAction,
+  ...rest
 }: ButtonComponentProps) {
   return (
-    <ButtonContainer variant={variant} onPress={onPressAction}>
+    <ButtonContainer {...rest} variant={variant}>
       {iconName && (
         <IconComponent
           iconColor={iconColor}

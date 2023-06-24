@@ -1,27 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   ButtonIsOnDietContainer,
   CircleIsOnDiet,
   IsOnDietButtonLabel,
 } from './style'
+import { ButtonProps } from 'react-native'
 
-export interface ButtonIsOnDietProps {
+export interface ButtonIsOnDietProps extends ButtonProps {
   option: 'Yes' | 'No'
   isSelected?: boolean
 }
 
-export function ButtonIsOnDiet({ option }: ButtonIsOnDietProps) {
-  const [selected, setSelected] = useState(false)
-
-  function handlePress() {
-    setSelected(!selected)
-  }
+export function ButtonIsOnDiet({ option, ...rest }: ButtonIsOnDietProps) {
   return (
-    <ButtonIsOnDietContainer
-      isSelected={selected}
-      option={option}
-      onPress={handlePress}
-    >
+    <ButtonIsOnDietContainer {...rest} option={option}>
       <CircleIsOnDiet option={option} />
       <IsOnDietButtonLabel>{option}</IsOnDietButtonLabel>
     </ButtonIsOnDietContainer>

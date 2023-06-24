@@ -7,33 +7,38 @@ import {
   TimeAndTitleContainer,
   TimeText,
 } from './style'
-import { useState } from 'react'
-
+import { searchSnacksById } from '@storage/Snacks/searchSnackById'
+import { useEffect, useState } from 'react'
+import { Snack } from 'src/screens/Home'
 interface SnackItemComponentProps {
-  title: string
-  time: string
-  isOnDiet: boolean
+  snackId: number
 }
 
-export function SnackItemComponent({
-  isOnDiet = false,
-  time,
-  title,
-}: SnackItemComponentProps) {
+export function SnackItemComponent({ snackId }: SnackItemComponentProps) {
   const { navigate } = useNavigation()
-  const [snack, setSnack] = useState<SnackItemComponentProps>()
+  const [snack, setSnack] = useState({} as Snack)
+
+  /* Loading data */
+  async function fetchSnackOnStorage() {
+    const snackOnStorage = await searchSnacksById(snackId)
+    console.log(snackOnStorage)
+    setSnack(snackOnStorage[0])
+  }
+  useEffect(() => {
+    fetchSnackOnStorage()
+  }, [])
+
   function handleSnackDetails() {
-    setSnack({ isOnDiet, time, title })
-    navigate('snackDetails', { snack: snack?.title })
+    navigate('snackDetails', { snack })
   }
   return (
     <SnackItemContainer onPress={handleSnackDetails}>
       <TimeAndTitleContainer>
-        <TimeText>{time}</TimeText>
+        <TimeText>{snack.time}</TimeText>
         <LineSeparator />
-        <SnackTitle>{title}</SnackTitle>
+        <SnackTitle>{snack.name}</SnackTitle>
       </TimeAndTitleContainer>
-      <SnackOnDiet isOnDiet={isOnDiet} />
+      <SnackOnDiet isOnDiet={snack.isOnDiet} />
     </SnackItemContainer>
   )
 }

@@ -4,13 +4,14 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "server": "json-server --host 192.168.0.55 --watch db.json",
+    "server": "json-server --host 192.168.1.111 --watch db.json",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
     "@expo-google-fonts/nunito": "^0.2.3",
+    "@react-native-async-storage/async-storage": "^1.18.2",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@rocketseat/eslint-config": "^1.2.0",

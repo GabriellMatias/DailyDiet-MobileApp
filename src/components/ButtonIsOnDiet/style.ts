@@ -17,7 +17,10 @@ export const ButtonIsOnDietContainer = styled.TouchableOpacity<ButtonIsOnDietPro
   align-items: center;
   justify-content: center;
 `
-export const CircleIsOnDiet = styled.View<ButtonIsOnDietProps>`
+interface ButtonIsOnDietComponentProps {
+  option: 'Yes' | 'No'
+}
+export const CircleIsOnDiet = styled.View<ButtonIsOnDietComponentProps>`
   width: 8px;
   height: 8px;
   border-radius: 99px;
