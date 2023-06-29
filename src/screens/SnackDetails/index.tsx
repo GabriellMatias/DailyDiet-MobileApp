@@ -41,7 +41,7 @@ export function SnackDetails() {
   }
   async function onRemoveSnack() {
     try {
-      await RemoveSnackById(snack.id)
+      await RemoveSnackById(snack.id, snack.date)
       navigate('home')
     } catch (error) {
       console.log(error)

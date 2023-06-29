@@ -39,9 +39,12 @@ export function Home() {
 
   async function fetchData() {
     try {
-      
       const response = await getSnacks()
-      setSnackData(response)
+      
+      // setSnackData(response)
+      if (typeof response !== 'undefined') {
+        setSnackData(response)
+      }
       console.log(response)
     } catch (error) {
       console.log('ERROR')
