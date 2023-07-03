@@ -11,9 +11,12 @@ export async function RemoveSnackById(id: number, title: string) {
     filteredSnacks.forEach((snack) => {
       snack.data = snack.data.filter((obj) => obj.id !== id)
     })
+    const updatedSnacks = filteredSnacks.filter(
+      (snack) => snack.data.length > 0,
+    )
 
-    console.log('REMOVING', filteredSnacks)
-    const storage = JSON.stringify(storedSnacks)
+    console.log('REMOVING', updatedSnacks)
+    const storage = JSON.stringify(updatedSnacks)
     console.log(storage)
     await AsyncStorage.setItem(SNACKS_COLLECTION, storage)
   } catch (error) {

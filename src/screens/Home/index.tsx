@@ -33,14 +33,13 @@ export interface SnackSection {
 }
 
 export function Home() {
-  /* TODO - Arrumar para quando voltar na tela home atualizar a lista de Snacks */
   const { navigate } = useNavigation()
   const [snackData, setSnackData] = useState<SnackSection[]>([])
 
   async function fetchData() {
     try {
       const response = await getSnacks()
-      
+
       // setSnackData(response)
       if (typeof response !== 'undefined') {
         setSnackData(response)
