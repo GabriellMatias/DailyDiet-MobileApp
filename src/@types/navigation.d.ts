@@ -8,6 +8,9 @@ export declare global {
       home: undefined
       dietsResume: undefined
       newSnack: undefined
+      editSnack: {
+        snackName: string
+      }
       snackDetails: {
         snack?: Snack
       }

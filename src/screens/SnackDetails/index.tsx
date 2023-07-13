@@ -49,6 +49,10 @@ export function SnackDetails() {
     }
   }
 
+  async function handleEditSnack() {
+    navigate('editSnack', { snackName: snack.name })
+  }
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <SnacksHeader title="Snacks" variant="green" />
@@ -65,7 +69,12 @@ export function SnackDetails() {
         </SnackDetailsFlag>
       </SnackDetailsContainer>
       <SnackDetailsButtonsContainer>
-        <ButtonComponent title="Edit Snack" iconSize={18} iconName="edit" />
+        <ButtonComponent
+          title="Edit Snack"
+          onPress={handleEditSnack}
+          iconSize={18}
+          iconName="edit"
+        />
         <ButtonComponent
           title="Remove Snack"
           variant="transparent"
